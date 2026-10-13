@@ -136,7 +136,7 @@ def main():
         legs = det.get("Legislation") or [{}]
         leg = legs[0]
         arts = det.get("Articles") or []
-        name = re.sub(r"\s+", " ", item["Name"]).strip()
+        name = re.sub(r"\s+", " ", item.get("Name") or leg.get("Name") or "").strip() or f"تشريع رقم {item.get('Number')} لسنة {item.get('Year')}"
         year = item.get("Year") or leg.get("Year") or 0
         number = item.get("Number")
         pid = item["pmk_ID"]
